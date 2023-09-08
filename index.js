@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, Counter } = require("./db");
+const { init: initDB, Counter, User } = require("./db/index");
 
 const logger = morgan("tiny");
 
@@ -30,6 +30,15 @@ app.post("/api/count", async (req, res) => {
   res.send({
     code: 0,
     data: await Counter.count(),
+  });
+});
+
+// 获取用户数据
+app.get("/api/getUserList", async (req, res) => {
+  const result = await User.find();
+  res.send({
+    code: 0,
+    data: result,
   });
 });
 
