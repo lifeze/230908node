@@ -35,7 +35,7 @@ app.post("/api/count", async (req, res) => {
 
 // 获取用户数据
 app.get("/api/getUserList", async (req, res) => {
-  const result = await User.find();
+  const result = await User.findAll();
   res.send({
     code: 0,
     data: result,
